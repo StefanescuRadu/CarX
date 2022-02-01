@@ -1,7 +1,8 @@
 
 import './App.css';
 import {Navbar} from './Components/Navbar.tsx';
-import {Main} from './Components/Main.tsx'
+import {Main} from './Components/Main.tsx';
+import Landing from "./Components/LandingPage/Landing.tsx";
 const navigation = {
   brand: { name: "NavbarScroller", to: "/" },
   links: [
@@ -17,8 +18,9 @@ const {brand,links} = navigation;
 function App() {
   return (
     <div className="App">
-      <Navbar brand={brand} links={links}/>
-      <Main/>
+      {/*<Navbar brand={brand} links={links}/>*/}
+      {/*<Main/>*/}
+      <Landing/>
     </div>
   );
 }
