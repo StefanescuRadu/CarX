@@ -1,8 +1,10 @@
 
 import './App.css';
-import {Navbar} from './Components/Navbar.tsx';
 import {Main} from './Components/Main.tsx';
 import Landing from "./Components/LandingPage/Landing.tsx";
+import Navbar from "./Components/Navbar/Navbar.tsx";
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+
 const navigation = {
   brand: { name: "NavbarScroller", to: "/" },
   links: [
@@ -17,11 +19,16 @@ const navigation = {
 const {brand,links} = navigation;
 function App() {
   return (
-    <div className="App">
-      {/*<Navbar brand={brand} links={links}/>*/}
-      {/*<Main/>*/}
-      <Landing/>
-    </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar/>
+          <Routes>
+            <Route path='/'  element={<Landing/>}/>
+            <Route path='/brands'  element={<Main/>}/>
+          </Routes>
+          {/*<Footer/>*/}
+        </div>
+      </BrowserRouter>
   );
 }
 
