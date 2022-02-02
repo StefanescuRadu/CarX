@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export  const Main = () => {
+export  const Brands = () => {
 
     const [data, setData] = useState([]);
     // const [loading,setLoading] = useState(true);
@@ -19,7 +19,7 @@ export  const Main = () => {
 
     return (
 
-        <div>
+        <div className="grid grid-cols-2 gap-4 h-[800px] items-center">
             {data.map(data => (
                 <div key={data.id}>
                     <h1>{data.name}</h1>

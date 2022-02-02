@@ -1,6 +1,6 @@
 
 import './App.css';
-import {Main} from './Components/Main.tsx';
+import {Brands} from './Components/Brands/Brands.tsx';
 import Landing from "./Components/LandingPage/Landing.tsx";
 import Navbar from "./Components/Navbar/Navbar.tsx";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
@@ -24,7 +24,7 @@ function App() {
           <Navbar/>
           <Routes>
             <Route path='/'  element={<Landing/>}/>
-            <Route path='/brands'  element={<Main/>}/>
+            <Route path='/brands'  element={<Brands/>}/>
           </Routes>
           {/*<Footer/>*/}
         </div>
