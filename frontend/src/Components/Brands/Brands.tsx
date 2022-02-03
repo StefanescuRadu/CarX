@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Brand from "./Brand";
+import { Link } from 'react-router-dom';
+
 export  const Brands = () => {
 
     const [data, setData] = useState([]);
@@ -20,8 +22,8 @@ export  const Brands = () => {
     return (
 
         <div className="grid grid-cols-2 mt-[10px]  items-center">
-            {data.map(data => (
-
+        {data.map(data => (
+            <Link to={`/brand/${data.name}`}>
                 <div key={data.id} className="group relative m-[3px]  h-[400px]  h-fill font-nav flex flex-col justify-center items-center">
                     <img className=" object-stretch w-[1100px] overflow-hidden group-hover:opacity-60 opacity-10" src={require("./car2.jpg")} />
                     <h1 className="absolute top-10 text-[40px] group-hover:opacity-100 opacity-0">{data.name}</h1>
@@ -30,8 +32,10 @@ export  const Brands = () => {
                     <img className=" object-fill h-[100px] group-hover:opacity-0" src={require("./porscheLogo.png")} />
                     </div>
                 </div>
+            </Link>
             ))}
     </div>
+
     )
 
 }

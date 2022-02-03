@@ -5,7 +5,8 @@ import com.codecool.car.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -20,12 +21,17 @@ public class BrandController {
     }
 
     @GetMapping()
-    public Set<Brand> getAll(){
+    public List<Brand> getAll(){
         return brandService.getAll();
     }
 
-    @GetMapping("/{brand}")
-    public Brand addBrand(@PathVariable String brand){
-        return  brandService.getByName(brand);
+    @PostMapping()
+    public Brand newBrand(@RequestBody Brand brand){
+        return brandService.addBrand(brand);
     }
+
+//    @GetMapping("/{brand}")
+//    public Brand addBrand(@PathVariable String brand){
+//        return  brandService.getByName(brand);
+//    }
 }
