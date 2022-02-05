@@ -3,20 +3,10 @@ import './App.css';
 import {Brands} from './Components/Brands/Brands.tsx';
 import Landing from "./Components/LandingPage/Landing.tsx";
 import Navbar from "./Components/Navbar/Navbar.tsx";
+import Manufacturer from "./Components/Manufacturer/Manufacturer.tsx";
+import Model from "./Components/Manufacturer/Model.tsx";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
-const navigation = {
-  brand: { name: "NavbarScroller", to: "/" },
-  links: [
-    { name: "About Me", to: "/about" },
-    { name: "Blog", to: "/blog" },
-    { name: "Developement", to: "/dev" },
-    { name: "Graphic Design", to: "/design" },
-    { name: "Contact", to: "/contact" },
-  ]
-}
-
-const {brand,links} = navigation;
 function App() {
   return (
       <BrowserRouter>
@@ -25,6 +15,8 @@ function App() {
           <Routes>
             <Route path='/'  element={<Landing/>}/>
             <Route path='/brands'  element={<Brands/>}/>
+            <Route path='/brands/:brand' element={<Manufacturer/>} />
+            <Route path='/brands/:brand/:model' element ={<Model />} />
           </Routes>
           {/*<Footer/>*/}
         </div>

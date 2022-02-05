@@ -36,6 +36,12 @@ public class BrandController {
         brandService.addCarToBrand(name,car);
 
     }
+
+    @GetMapping("/{name}")
+    public Brand getBrandByName(@PathVariable String name){
+        return brandService.findBrandByName(name);
+    }
+
 //
 //    @GetMapping("/brand/cars")
 //    public List<Car> getAllCars(){
