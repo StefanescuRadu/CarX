@@ -7,6 +7,7 @@ import Manufacturer from "./Components/Manufacturer/Manufacturer.tsx";
 import Model from "./Components/Manufacturer/Model.tsx";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Register from "./Components/User_Auth/Register.tsx";
+import Login from "./Components/User_Auth/Login.tsx";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
             <Route path='/brands'  element={<Brands/>}/>
             <Route path='/brands/:brand' element={<Manufacturer/>} />
             <Route path='/brands/:brand/:model' element ={<Model />} />
-              <Route path='/register' element ={<Register />} />
+            <Route path='/register' element ={<Register />} />
+              <Route path='/login' element ={<Login />} />
           </Routes>
           {/*<Footer/>*/}
         </div>
