@@ -34,6 +34,8 @@ public class CarService {
         return carRepository.save(car);
     }
 
-
+    public Car getCarByBrandAndName(Brand brand,String name){
+        return carRepository.findCarByName(name);
+    }
 
 }

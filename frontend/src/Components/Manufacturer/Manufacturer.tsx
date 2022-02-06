@@ -3,19 +3,8 @@ import axios from "axios";
 import {Link,useParams} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
+import {Car} from "./Model"
 
-interface Car{
-    id: number;
-    name: string;
-    carType:string;
-    description: string;
-    engine: number;
-    seats: number;
-    length: number;
-    engineType: string;
-    price: number;
-    color: string;
-}
 interface Manufacturer {
     id: number;
     name: string;
