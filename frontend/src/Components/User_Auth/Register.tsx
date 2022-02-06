@@ -51,7 +51,7 @@ const Register = () => {
                        <input className="mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                               type="password" id="password" name="password" placeholder="Password" autoComplete="none"  required />
                    </div>
-                
+
                    <button className="bg-blue-500 mt-[12px] hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Register</button>
                 </form>
        </div>
