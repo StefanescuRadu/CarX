@@ -32,11 +32,16 @@ public class UserService {
     }
 
     @Transactional
-    public void addCarToFavourites(User user,Long car){
+    public void addCarToFavourites(String user,Long car){
+        User userToAdd = userRepository.findByName(user);
         Car carToAdd = carRepository.findById(car).orElse(null);
-        user.getFavourites().add(carToAdd);
+        userToAdd.getFavourites().add(carToAdd);
     }
     public Set<Car> getUsersFavourites(User user){
         return user.getFavourites();
+    }
+
+    public void deleteUser(Long id){
+         userRepository.deleteById(id);
     }
 }

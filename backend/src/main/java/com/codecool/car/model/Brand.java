@@ -25,12 +25,5 @@ public class Brand {
     @OneToMany
     private Set<Car> cars;
 
-//    public void addCarToBrand(Car car){
-//        //As said Hibernate will ignore it when persist this relationship.
-//        //Add it mainly for the consistency of this relationship for both side in the Java instance
-//        this.cars.add(car);
-////
-////        car.setBrand(this);
-//    }
 
 }
