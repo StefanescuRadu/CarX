@@ -1,18 +1,14 @@
 package com.codecool.car.controller;
 
-import com.codecool.car.model.Brand;
-import com.codecool.car.model.Car;
+
 import com.codecool.car.model.JsonResponse;
 import com.codecool.car.model.User;
-import com.codecool.car.service.BrandService;
-import com.codecool.car.service.CarService;
+
 import com.codecool.car.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,6 +26,11 @@ public class UserController {
     @GetMapping()
     public List<User> getAll() {
         return userService.getAll();
+    }
+
+    @GetMapping("/user/{email}")
+    public User getUser(@PathVariable  String email){
+        return userService.getUser(email);
     }
 
     @PostMapping("/register")

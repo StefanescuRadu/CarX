@@ -31,9 +31,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User getUser(String email){
+        return userRepository.findByEmail(email);
+    }
     @Transactional
-    public void addCarToFavourites(String user,Long car){
-        User userToAdd = userRepository.findByName(user);
+    public void addCarToFavourites(String email,Long car){
+        User userToAdd = userRepository.findByEmail(email);
         Car carToAdd = carRepository.findById(car).orElse(null);
         userToAdd.getFavourites().add(carToAdd);
     }

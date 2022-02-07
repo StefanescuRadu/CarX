@@ -1,7 +1,16 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import {ReactSession} from 'react-client-session';
 
+
+interface User {
+
+    name: string,
+    email: string,
+    favourites: []
+
+}
 interface Data {
     email: string,
     password: string
@@ -13,6 +22,13 @@ interface Message{
 }
 
 const Login = () => {
+
+    const[logedIn,setLogedIn] = useState<User>({
+        name: null,
+        email: null,
+        favourites: null
+
+    })
 
     const [message,setMessage] = useState<Message>({
         status: null,
@@ -50,6 +66,21 @@ const Login = () => {
             console.log(err.response.data.errors)
         }
     }
+    useEffect(() => {
+        console.log("A")
+        const result = async () => {
+            const response = await axios('http://localhost:8080/users/user/' + user.email,);
+
+            setLogedIn({name:response.data.name, email:response.data.email,favourites:response.data.favourites})
+
+        }
+        if(message.status == "OK"){
+            result();
+            ReactSession.setStoreType("localStorage");
+            ReactSession.set("username", "Bob");
+        }
+
+    }, [message.status]);
 
     return(
         <div className="flex">
