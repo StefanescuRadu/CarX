@@ -32,7 +32,7 @@ public class UserController {
         return userService.getAll();
     }
 
-    @PostMapping()
+    @PostMapping("/register")
     public JsonResponse newUser(@RequestBody User user){
         List<User> users = getAll();
         for (User user1 : users) {
@@ -42,6 +42,17 @@ public class UserController {
         }
          userService.addUser(user);
         return new JsonResponse("OK","User added!");
+    }
+
+    @PostMapping("/login")
+    public JsonResponse logUser(@RequestBody User user){
+        List<User> users = getAll();
+        for (User user1 : users) {
+            if(user1.getEmail().equals(user.getEmail()) && user1.getPassword().equals(user.getPassword())){
+                return new JsonResponse("OK","Log in succesfull!");
+            }
+        }
+        return new JsonResponse("BAD","Wrong email or password!");
     }
 
     @PostMapping("/{user}/{car}")

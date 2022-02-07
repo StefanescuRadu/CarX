@@ -37,7 +37,7 @@ const Register = () => {
         console.log("tried to fetch");
         console.log(JSON.stringify(user))
         try{
-            const response = await axios.post('http://localhost:8080/users',
+            const response = await axios.post('http://localhost:8080/users/register',
                 JSON.stringify(user),
                  {
                headers : headers
@@ -59,8 +59,8 @@ const Register = () => {
             <div className="relative">
            <img className="w-[900px] h-[880px] ml-[60px]" src={require('./Register.jpg')} />
                 <div className ="absolute top-[300px] left-[250px] text-amber-700 text-[50px] flex flex-col justify-center items-center">
-                    <h1>Already a member ?</h1>
-                    <Link className="p-[30px]" to="/login">
+                    <h1 className="relative left-[30px]">Already a member ?</h1>
+                    <Link className="relative left-[30px] p-[30px]" to="/login">
                         <h2 className="bg-amber-500 mt-[12px] hover:bg-amber-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline">Login</h2>
                     </Link>
                 </div>
@@ -97,7 +97,7 @@ const Register = () => {
                               type="password" id="password" name="password" placeholder="Password" autoComplete="none"  required onChange={(e) =>setUser({...user,password:e.target.value})} />
                    </div>
 
-                   <button className="bg-blue-500 mt-[12px] hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Register</button>
+                   <button className="bg-blue-500 mt-[30px] hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Register</button>
                 </form>
             </div>
        </div>
