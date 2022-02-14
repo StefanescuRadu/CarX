@@ -108,7 +108,7 @@ const Login = () => {
                 </form>
             </div>
             <div className="relative">
-                <img className="w-[900px] h-[880px] ml-[60px]" src={require('./Login.jpg')} />
+                <img className="w-[900px] h-[880px] ml-[60px]" src={require('./login_resized .jpg')} />
                 <div className ="absolute top-[300px] left-[250px] text-amber-700 text-[50px] flex flex-col justify-center items-center">
                     <h1 className="relative left-[80px]">Not a member ?</h1>
                     <Link className="p-[30px]" to="/register">

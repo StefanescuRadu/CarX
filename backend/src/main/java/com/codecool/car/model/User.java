@@ -4,7 +4,11 @@ package com.codecool.car.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Getter
 @Setter
@@ -23,4 +27,6 @@ public class User {
     private String password;
     @OneToMany
     private Set<Car> favourites;
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 }

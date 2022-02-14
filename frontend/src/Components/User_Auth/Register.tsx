@@ -43,10 +43,8 @@ const Register = () => {
                headers : headers
             }
             );
+            console.log(response.data);
             setMessage({status:response.data.status,message:response.data.message})
-
-
-
         }
         catch (err){
             console.log(err.response.data.errors)
@@ -57,7 +55,7 @@ const Register = () => {
        <div className="flex">
 
             <div className="relative">
-           <img className="w-[900px] h-[880px] ml-[60px]" src={require('./Register.jpg')} />
+           <img className="w-[900px] h-[880px] ml-[60px]" src={require('./resized_register .jpg')} />
                 <div className ="absolute top-[300px] left-[250px] text-amber-700 text-[50px] flex flex-col justify-center items-center">
                     <h1 className="relative left-[30px]">Already a member ?</h1>
                     <Link className="relative left-[30px] p-[30px]" to="/login">

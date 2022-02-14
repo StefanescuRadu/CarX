@@ -2,13 +2,13 @@ const Landing = () =>{
     return(
         <div className="bg-neutral-50 h-[800px] relative">
             <div className=" absolute right-0 top-20">
-                <img className="object-fill h-[600px] w-[1100px] " alt="mustang" src={require("./Tesla.jpg")}/>
+                <img className="object-fill h-[600px] w-[1100px] " alt="mustang" src={require("./resized_tesla .jpg")}/>
             </div>
         <div className=" absolute left-[700px] top-[150px] ">
-            <img className="object-fill w-[400px]" alt="car" src={require("./Lambo.jpg")}/>
+            <img className="object-fill w-[400px]" alt="car" src={require("./resized_lambo.jpg")}/>
         </div>
             <div className=" absolute  top-[550px] right-[500px] z-10">
-                <img className="object-fill w-[400px] " alt="highroad" src={require("./Porsche.jpg")}/>
+                <img className="object-fill w-[400px] " alt="highroad" src={require("./resized_porsche.jpg")}/>
             </div>
 
             <div className=" font-audio absolute left-10 top-[100px] w-[600px]">
