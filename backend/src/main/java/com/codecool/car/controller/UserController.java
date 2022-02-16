@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -65,26 +66,30 @@ public class UserController {
                 return new JsonResponse("BAD","Email address already in use!");
             }
         }
-         userService.saveUser(user);
-         userService.addRoleToUser(user.getEmail(),"ROLE_USER");
+        userService.saveUser(user);
+        userService.addRoleToUser(user.getEmail(),"ROLE_USER");
         return new JsonResponse("OK","User added!");
     }
 
     @PostMapping("/login")
-    public JsonResponse logUser(@RequestBody User user){
+    public JsonResponse logUser(@RequestBody MultiValueMap paramMap) {
         List<User> users = userService.getUsers();
-        for (User user1 : users) {
-            if(userService.checkLogin(user1,user)){
-                return new JsonResponse("OK","Log in succesfull!");
+        String password = paramMap.getFirst("password").toString();
+        String email = paramMap.getFirst("email").toString();
+        System.out.println(password);
+        System.out.println(email);
+        for (User user : users) {
+            if (userService.checkLogin(user, password, email)) {
+                return new JsonResponse("OK", "Log in succesfull!");
             }
         }
-        return new JsonResponse("BAD","Wrong email or password!");
+        return new JsonResponse("BAD", "Wrong email or password!");
     }
 
     @PostMapping("/{user}/{car}")
     public ResponseEntity<?> addCarToFavourite(@PathVariable String user, @PathVariable Long car){
-         userService.addCarToFavourites(user,car);
-         return ResponseEntity.ok().build();
+        userService.addCarToFavourites(user,car);
+        return ResponseEntity.ok().build();
     }
 
 
@@ -160,4 +165,3 @@ class RoleToUserForm {
     private String username;
     private String roleName;
 }
-

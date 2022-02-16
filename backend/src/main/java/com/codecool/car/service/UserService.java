@@ -61,12 +61,10 @@ public class UserService implements UserDetailsService {
         return roleRepository.save(role);
     }
 
-    public boolean checkLogin(User dataUser,User logUser){
-        String encoded = passwordEncoder.encode(logUser.getPassword());
-//        System.out.println(dataUser.getPassword());
-//        System.out.println(encoded);
-        return passwordEncoder.matches(logUser.getPassword(),dataUser.getPassword())
-                && dataUser.getEmail().equals(logUser.getEmail());
+    public boolean checkLogin(User dataUser,String password,String email){
+
+        return passwordEncoder.matches(password,dataUser.getPassword())
+                && dataUser.getEmail().equals(email);
     }
 
     public void addRoleToUser(String email, String roleName) {

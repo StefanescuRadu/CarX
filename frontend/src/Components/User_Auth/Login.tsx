@@ -22,6 +22,7 @@ interface Message{
 }
 
 const Login = () => {
+    const params = new URLSearchParams();
 
     const[logedIn,setLogedIn] = useState<User>({
         name: null,
@@ -44,19 +45,23 @@ const Login = () => {
 
     };
     const headers =  {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
     const fetchPost = async () => {
         console.log("tried to fetch");
         console.log(JSON.stringify(user))
+        params.append("email",user.email);
+        params.append("password",user.password)
         try{
-            const response = await axios.post('http://localhost:8080/users/login',
-                JSON.stringify(user),
-                {
-                    headers : headers
-                }
-            );
+            // const response = await axios.post('http://localhost:8080/users/login',
+            //     JSON.stringify(user),
+            //     {
+            //         headers : headers
+            //     }
+            const response = await axios.post("http://localhost:8080/users/login",params,{
+                headers: headers
+            });
+            console.log(response.data)
             setMessage({status:response.data.status,message:response.data.message})
 
 
