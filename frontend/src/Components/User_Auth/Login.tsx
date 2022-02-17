@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import {ReactSession} from 'react-client-session';
+import  {useNavigate}  from 'react-router-dom';
 
 
 interface User {
@@ -22,8 +23,11 @@ interface Message{
 }
 
 const Login = () => {
-    const params = new URLSearchParams();
 
+    const params = new URLSearchParams();
+    const navigate = useNavigate();
+    ReactSession.setStoreType("localStorage");
+    console.log(ReactSession.get("username"))
     const[logedIn,setLogedIn] = useState<User>({
         name: null,
         email: null,
@@ -35,6 +39,7 @@ const Login = () => {
         status: null,
         message: null
     })
+
     const [user,setUser] = useState<Data>({
         email:null,
         password: null
@@ -46,6 +51,12 @@ const Login = () => {
     };
     const headers =  {
         'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    const redirect = () => {
+
+            navigate("/") ;
+
     }
     const fetchPost = async () => {
         console.log("tried to fetch");
@@ -61,8 +72,13 @@ const Login = () => {
             const response = await axios.post("http://localhost:8080/users/login",params,{
                 headers: headers
             });
-            console.log(response.data)
-            setMessage({status:response.data.status,message:response.data.message})
+            const data = await response.data;
+            console.log(data)
+            setMessage({status:data.status,message:data.message})
+            let token = data["acces-token"];
+
+
+            ReactSession.set("token", token);
 
 
 
@@ -71,21 +87,26 @@ const Login = () => {
             console.log(err.response.data.errors)
         }
     }
+
     useEffect(() => {
         console.log("A")
         const result = async () => {
             const response = await axios('http://localhost:8080/users/user/' + user.email,);
-
+            console.log(response);
             setLogedIn({name:response.data.name, email:response.data.email,favourites:response.data.favourites})
-
+            ReactSession.set("email",response.data.email);
+            ReactSession.set("username",response.data.name);
         }
-        if(message.status == "OK"){
+        if(message.status == "OK") {
             result();
-            ReactSession.setStoreType("localStorage");
-            ReactSession.set("username", "Bob");
+            redirect();
+            return () => {
+                setMessage({status: null, message: null})
+            }
         }
 
     }, [message.status]);
+
 
     return(
         <div className="flex">

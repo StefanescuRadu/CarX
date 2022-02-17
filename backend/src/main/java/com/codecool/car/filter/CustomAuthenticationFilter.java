@@ -42,7 +42,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        log.info("Username is {}",email);
+        log.info("Email is {}",email);
         log.info("Password is {}",password);
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email,password);
         return authenticationManager.authenticate(authToken);
@@ -52,6 +52,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
         User user = (User)authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+
 
         String accesToken = JWT.create()
                 .withSubject(user.getUsername())
@@ -71,6 +72,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Map<String,String> tokens = new HashMap<>();
         tokens.put("acces-token",accesToken);
         tokens.put("refresh-token",refreshToken);
+        tokens.put("user_email",user.getUsername());
+        tokens.put("status","OK");
+        tokens.put("message","Log in succesfull!");
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     }
