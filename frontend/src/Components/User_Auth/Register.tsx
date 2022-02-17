@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import  {useNavigate}  from 'react-router-dom';
 
 interface Data {
     name: string,
@@ -14,7 +15,7 @@ interface Message{
 }
 
 const Register = () => {
-
+    const navigate = useNavigate();
     const [message,setMessage] = useState<Message>({
         status: null,
         message: null
@@ -50,6 +51,22 @@ const Register = () => {
             console.log(err.response.data.errors)
         }
     }
+
+    const redirect = () =>{
+       navigate("/login")
+    }
+    useEffect(() => {
+
+
+        if(message.status == "OK") {
+            redirect();
+            return () => {
+                setMessage({status: null, message: null})
+            }
+        }
+
+    }, [message.status]);
+
 
    return(
        <div className="flex">

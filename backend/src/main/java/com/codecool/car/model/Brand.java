@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,12 +19,11 @@ public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private long id;
+    private Long id;
     private String name;
     private String description;
     @OneToMany
-    private Set<Car> cars;
+    private Set<Car> cars = new HashSet<>();
 
 
 }

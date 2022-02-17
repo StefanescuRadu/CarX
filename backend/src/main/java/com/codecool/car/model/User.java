@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
@@ -29,4 +30,6 @@ public class User {
     private Set<Car> favourites;
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
+
 }

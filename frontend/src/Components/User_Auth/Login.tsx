@@ -1,10 +1,12 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState,useContext} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import {ReactSession} from 'react-client-session';
 import  {useNavigate}  from 'react-router-dom';
-
-
+// @ts-ignore
+import AuthContext from "../AuthContext.tsx";
+import {useAtom} from 'jotai'
+import {USER_EMAIL,USER_NAME} from "../../Store"
 interface User {
 
     name: string,
@@ -27,7 +29,12 @@ const Login = () => {
     const params = new URLSearchParams();
     const navigate = useNavigate();
     ReactSession.setStoreType("localStorage");
-    console.log(ReactSession.get("username"))
+
+    const [name, setName] = useAtom(USER_NAME);
+    const [email,setEmail] = useAtom(USER_EMAIL);
+    // const {setName,setEmail} = useContext(AuthContext);
+
+
     const[logedIn,setLogedIn] = useState<User>({
         name: null,
         email: null,
@@ -39,6 +46,7 @@ const Login = () => {
         status: null,
         message: null
     })
+
 
     const [user,setUser] = useState<Data>({
         email:null,
@@ -64,11 +72,6 @@ const Login = () => {
         params.append("email",user.email);
         params.append("password",user.password)
         try{
-            // const response = await axios.post('http://localhost:8080/users/login',
-            //     JSON.stringify(user),
-            //     {
-            //         headers : headers
-            //     }
             const response = await axios.post("http://localhost:8080/users/login",params,{
                 headers: headers
             });
@@ -96,6 +99,10 @@ const Login = () => {
             setLogedIn({name:response.data.name, email:response.data.email,favourites:response.data.favourites})
             ReactSession.set("email",response.data.email);
             ReactSession.set("username",response.data.name);
+            // setName(response.data.name);
+            // setEmail(response.data.email);
+            setName(response.data.name)
+            setEmail(response.data.email)
         }
         if(message.status == "OK") {
             result();
@@ -130,7 +137,7 @@ const Login = () => {
                                type="password" id="password" name="password" placeholder="Password" autoComplete="none"  required onChange={(e) =>setUser({...user,password:e.target.value})} />
                     </div>
 
-                    <button className="bg-amber-500 mt-[30px] hover:bg-amber-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
+                    <button  className="bg-amber-500 mt-[30px] hover:bg-amber-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
                 </form>
             </div>
             <div className="relative">
