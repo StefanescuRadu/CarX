@@ -3,6 +3,7 @@ package com.codecool.car;
 import com.codecool.car.model.Brand;
 import com.codecool.car.model.Car;
 import com.codecool.car.model.Role;
+import com.codecool.car.model.User;
 import com.codecool.car.model.enums.CarType;
 import com.codecool.car.model.enums.EngineType;
 import com.codecool.car.service.BrandService;
@@ -41,7 +42,8 @@ public class CarApplication {
 			brandService.addBrand(new Brand(null, "Tesla", "Lorem ipsum", new HashSet<>()));
 			Car car = new Car(null,"test", CarType.COUPE,"lorem ipsum",2,5,5, EngineType.DIESEL,25000,"black",null);
 			brandService.addCarToBrand("BMW",car);
-//
+			userService.saveUser(new User(null,"admin","admin@admin.com","admin",new HashSet<>(),new ArrayList<>()));
+			userService.addRoleToUser("admin@admin.com","ROLE_ADMIN");
 
 
 //			userService.saveUser(new User(null,"Jim Carry","Jim","1234",new ArrayList<>()));

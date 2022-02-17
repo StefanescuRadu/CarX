@@ -6,7 +6,7 @@ import  {useNavigate}  from 'react-router-dom';
 // @ts-ignore
 import AuthContext from "../AuthContext.tsx";
 import {useAtom} from 'jotai'
-import {USER_EMAIL,USER_NAME} from "../../Store"
+import {USER_EMAIL,USER_NAME,USER_TYPE} from "../../Store"
 interface User {
 
     name: string,
@@ -32,6 +32,7 @@ const Login = () => {
 
     const [name, setName] = useAtom(USER_NAME);
     const [email,setEmail] = useAtom(USER_EMAIL);
+    const [userType,setUserType] = useAtom(USER_TYPE);
     // const {setName,setEmail} = useContext(AuthContext);
 
 
@@ -80,10 +81,7 @@ const Login = () => {
             setMessage({status:data.status,message:data.message})
             let token = data["acces-token"];
 
-
             ReactSession.set("token", token);
-
-
 
         }
         catch (err){
@@ -99,10 +97,11 @@ const Login = () => {
             setLogedIn({name:response.data.name, email:response.data.email,favourites:response.data.favourites})
             ReactSession.set("email",response.data.email);
             ReactSession.set("username",response.data.name);
-            // setName(response.data.name);
-            // setEmail(response.data.email);
+            console.log(response.data.roles[0].name)
+            // ReactSession.set("userType",response.data.roles[0].name)
             setName(response.data.name)
             setEmail(response.data.email)
+            setUserType(response.data.roles[0].name)
         }
         if(message.status == "OK") {
             result();
