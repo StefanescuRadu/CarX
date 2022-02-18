@@ -11,6 +11,7 @@ import Login from "./Components/User_Auth/Login.tsx";
 import AuthContext from "./Components/AuthContext.tsx";
 import UserProfile from "./Components/UserProfile/UserProfile.tsx";
 import AddBrand from "./Components/Admin_CRUD/AddBrand.tsx";
+import AddCar from "./Components/Admin_CRUD/AddCar.tsx";
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
                 <Route path='/register' element ={ <Register /> } />
                 <Route path='/login' element ={ <Login /> } />
                 <Route path ='/users/:name' element={ <UserProfile /> } />
-                  <Route path ='/addBrand' element = {<AddBrand />} />
+                <Route path ='/addBrand' element = {<AddBrand />} />
+                  <Route path ='/addCar' element = {<AddCar />} />
               </Routes>
           {/*<Footer/>*/}
           {/*  </AuthContext.Provider>*/}
