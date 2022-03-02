@@ -19,17 +19,17 @@ const AddCar = () => {
     const navigate = useNavigate();
     const [car,setCar] = useState<Car>({
         name: null,
-        carType: null,
+        carType: "SEDAN",
         description: null,
         engine: null,
         seats: null,
         length: null,
-        engineType: null,
+        engineType: "DIESEL",
         price: null,
-        color: null,
+        color: "Black",
     })
     const[data,setData] = useState(null);
-    const [brand,setBrand] = useState(null);
+    const [brand,setBrand] = useState("BMW");
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -88,7 +88,7 @@ const AddCar = () => {
                 </div>
                 <div>
                     <label className="block mt-[12px]" htmlFor="carType" >CarType</label>
-                    <select className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <select  className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="carType" name="carType" placeholder="CarType"   required onChange={(e) =>setCar({...car,carType:e.target.value})} >
                         <option value="SEDAN">Sedan</option>
                         <option value="SUV">Suv</option>
@@ -98,7 +98,7 @@ const AddCar = () => {
                 </div>
                 <div>
                     <label className="block mt-[12px]" htmlFor="engineType" >EngineType</label>
-                    <select className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <select  className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="engineType" name="engineType" placeholder="EngineType"   required onChange={(e) =>setCar({...car,engineType:e.target.value})} >
                         <option value="DIESEL">Diesel</option>
                         <option value="GAS">Gas</option>
@@ -128,7 +128,7 @@ const AddCar = () => {
                 </div>
                 <div>
                     <label className="block mt-[12px]" htmlFor="color" >Color</label>
-                    <select className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <select  className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="color" name="color" placeholder="Color"   required onChange={(e) =>setCar({...car,color:e.target.value})}>
                         <option value="Black">Black</option>
                         <option value="White">White</option>
@@ -138,12 +138,17 @@ const AddCar = () => {
                 </div>
                 <div>
                     <label className="block mt-[12px]" htmlFor="brand" >Brand </label>
-                    <select className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          id="brand" name="brand" placeholder="Brand"   required onChange={(e) =>setBrand(e.target.value)} >
-                        {data && data.map(brand => (
-                            <option key={brand.id} value ={brand.name}>{brand.name}</option>
+                    {data
+                    &&
+                    <select
+                            className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="brand" name="brand" placeholder="Brand" required
+                            onChange={(e) => setBrand(e.target.value)}>
+                        {data.map(brand => (
+                            <option key={brand.id} value={brand.name}>{brand.name}</option>
                         ))}
                     </select>
+                    }
                 </div>
                 <button className="bg-stone-900 mt-[30px] hover:bg-stone-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Add car to brand</button>
             </form>

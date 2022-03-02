@@ -7,6 +7,8 @@ import  {useNavigate}  from 'react-router-dom';
 import AuthContext from "../AuthContext.tsx";
 import {useAtom} from 'jotai'
 import {USER_EMAIL,USER_NAME,USER_TYPE} from "../../Store"
+
+
 interface User {
 
     name: string,

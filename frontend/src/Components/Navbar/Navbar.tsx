@@ -12,7 +12,7 @@ import {USER_NAME,USER_EMAIL,USER_TYPE} from "../../Store"
 const Navbar = () =>{
     // const {name,email} = useContext(AuthContext);
     const [name,setName] = useAtom(USER_NAME);
-    const[email,setEmail] = useAtom(USER_EMAIL);;
+    const[email,setEmail] = useAtom(USER_EMAIL);
     const [userType,setUserType] = useAtom(USER_TYPE)
     const navigate = useNavigate();
 
