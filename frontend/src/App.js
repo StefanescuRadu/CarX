@@ -11,8 +11,19 @@ import UserProfile from "./Components/UserProfile/UserProfile.tsx";
 import AddBrand from "./Components/Admin_CRUD/AddBrand.tsx";
 import AddCar from "./Components/Admin_CRUD/AddCar.tsx";
 import Map from "./Components/Map/Map.tsx";
+import {useState,useEffect} from "react";
+import {loadMapApi} from "./utils/GoogleMapsUtils.ts";
 
 function App() {
+    const google = window.google;
+    const[scriptLoaded,setScriptLoaded] = useState(false);
+
+    useEffect(() =>{
+        const googleMapsScript = loadMapApi();
+        googleMapsScript.addEventListener("load",()=>{
+            setScriptLoaded(true);
+        })
+    },[]);
 
     return (
         <BrowserRouter>
@@ -28,12 +39,15 @@ function App() {
                     <Route path='/users/:name' element={<UserProfile/>}/>
                     <Route path='/addBrand' element={<AddBrand/>}/>
                     <Route path='/addCar' element={<AddCar/>}/>
-                    {/*<Route path='/map/:brand'*/}
-                    {/*       element={<Map*/}
-                    {/*        mapType={google.maps.MapTypeId.ROADMAP}*/}
-                    {/*        mapTypeControl ={true}*/}
-                    {/*                />}*/}
-                    {/*/>*/}
+                    {scriptLoaded &&
+                    <Route path='/map/:brand'
+                           element={<Map
+                               mapType={google.maps.MapTypeId.HYBRID}
+                               mapTypeControl ={true}
+                           />}
+                    />
+                    }
+
                 </Routes>
             </div>
         </BrowserRouter>

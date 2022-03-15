@@ -1,6 +1,6 @@
 export const loadMapApi = () => {
 
-    const mapsURL =`https://maps.googleapis.com/maps/api/js?key=&libraries=places&language=en&v=quarterly`;
+    const mapsURL =`https://maps.googleapis.com/maps/api/js?key=AIzaSyCJuVspl0cOtvfAmCq0-AOhr9xfIuik6uQ&libraries=places&language=en&v=quarterly`;
     const scripts = document.getElementsByTagName('script');
 
     for(let i=0; i<scripts.length; i++){
