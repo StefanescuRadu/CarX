@@ -43,10 +43,7 @@ function App() {
                     <Route path='/map/:brand'
                            element={<Map
                                mapType={google.maps.MapTypeId.HYBRID}
-                               mapTypeControl ={true}
-                           />}
-                    />
-                    }
+                               mapTypeControl ={true} />}/>}
 
                 </Routes>
             </div>
