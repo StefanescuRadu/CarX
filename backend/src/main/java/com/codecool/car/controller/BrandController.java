@@ -5,6 +5,7 @@ import com.codecool.car.model.Car;
 import com.codecool.car.service.BrandService;
 import com.codecool.car.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -38,7 +39,6 @@ public class BrandController {
     @PostMapping("/{name}")
     public void newCar(@RequestBody Car car, @PathVariable String name) {
         brandService.addCarToBrand(name,car);
-
     }
 
     @GetMapping("/{name}")
@@ -52,14 +52,4 @@ public class BrandController {
         System.out.println(car);
         return carService.getCarByBrandAndName(brand,car);
     }
-
-//
-//    @GetMapping("/brand/cars")
-//    public List<Car> getAllCars(){
-//        return brandService.getAll().
-//    }
-//    @GetMapping("/{brand}")
-//    public Brand addBrand(@PathVariable String brand){
-//        return  brandService.getByName(brand);
-//    }
 }

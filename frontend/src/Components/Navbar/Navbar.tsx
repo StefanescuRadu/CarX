@@ -16,12 +16,14 @@ const Navbar = () =>{
     const [userType,setUserType] = useAtom(USER_TYPE)
     const navigate = useNavigate();
 
+
     const logout = () =>{
         setName(null)
         setEmail(null)
         setUserType(null)
         navigate("/")
     }
+
     return(
         <nav className="flex justify-around items-center w-full h-[60px]
         text-[30px] font-nav text-white bg-gradient-to-l from-neutral-700 to-neutral-900">
