@@ -72,7 +72,7 @@ const Register = () => {
        <div className="flex">
 
             <div className="relative">
-           <img className="w-[900px] h-[880px] ml-[60px]" src={require('./resized_register .jpg')} />
+           <img className="w-[900px] h-[775px] ml-[60px]" src={require('./resized_register .jpg')} />
                 <div className ="absolute top-[300px] left-[250px] text-amber-700 text-[50px] flex flex-col justify-center items-center">
                     <h1 className="relative left-[30px]">Already a member ?</h1>
                     <Link className="relative left-[30px] p-[30px]" to="/login">
@@ -93,7 +93,7 @@ const Register = () => {
            {message.status == "OK" ? <h1 className="ml-[40px] relative top-[130px] text-[40px] text-green-500">{message.message}</h1>
                : <h1 className="relative top-[130px] text-[40px] text-red-500">{message.message}</h1>}
 
-                <form className="relative top-[200px] ml-[30px] bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-[30px] w-[970px] flex flex-col justify-center items-center"
+                <form className="relative top-[150px] ml-[50px] bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-[30px] w-[800px] flex flex-col justify-center items-center"
                       onSubmit = {handleSubmit} autoComplete="new-password">
                    <div>
                        <label className="block mt-[12px]" htmlFor="username" >Username</label>

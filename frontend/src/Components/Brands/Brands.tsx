@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Brand from "./Brand";
 import { Link } from 'react-router-dom';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMapMarked} from "@fortawesome/free-solid-svg-icons";
 
 export  const Brands = () => {
 
     const [data, setData] = useState([]);
-    // const [loading,setLoading] = useState(true);
 
     useEffect(() => {
         const result = async () => {
             const response = await axios('http://localhost:8080',);
-            // const data = await response.json();
             setData(response.data);
 
             console.log(response.data)
@@ -19,6 +18,8 @@ export  const Brands = () => {
         result();
     }, []);
 
+    // @ts-ignore
+    // @ts-ignore
     return (
 
         <div className="grid grid-cols-2 mt-[10px]  items-center">
@@ -30,6 +31,9 @@ export  const Brands = () => {
                     <h2 className="absolute top-40 text-[20px] group-hover:opacity-100 opacity-0">{data.description}</h2>
                     <div className="absolute">
                     <img className=" object-fill h-[100px] group-hover:opacity-100 opacity-0" src={require("./porscheLogo.png")} />
+                        <Link to={`/map/${data.name}`}>
+                            <FontAwesomeIcon className="text-[30px] text-blue-300 group-hover:opacity-100 opacity-0" icon={faMapMarked} />
+                        </Link>
                     </div>
                 </div>
             </Link>

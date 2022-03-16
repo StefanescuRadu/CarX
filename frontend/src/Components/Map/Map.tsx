@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
+import {useParams} from "react-router-dom";
 
 interface IMap {
     mapType: google.maps.MapTypeId,
@@ -15,7 +16,7 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
 
     const ref = useRef<HTMLDivElement>(null);
     const [map,setMap] = useState<GoogleMap>();
-
+    const{brand} = useParams();
 
     const startMap = ():void => {
         if(!map) {
@@ -29,7 +30,7 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
     useEffect(startMap,[map]);
 
     const defaultMapStart = ():void => {
-        const defaultAddress = new google.maps.LatLng( 44.439,26.096);
+        const defaultAddress = new google.maps.LatLng( 48.210033,16.363449);
         initMap(12,defaultAddress);
 
 
@@ -39,20 +40,20 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
         service = new google.maps.places.PlacesService(map);
 
         let request = {
-            location: new google.maps.LatLng( 44.439,26.096),
+            location: new google.maps.LatLng( 48.210033,16.363449),
             radius: 2000,
-            query: 'bmw',
-            type: 'car_dealer',
+            query: brand + 'Dealer',
+            // type: 'car_dealer',
             fields: ['name', 'opening_hours']
         };
 
         service = new google.maps.places.PlacesService(map);
         console.log(map);
-        service.nearbySearch(request, callback);
+        service.textSearch(request, callback);
     }
 
     function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
                 console.log(results[i]);
                 createMarker(results[i]);
@@ -88,8 +89,7 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
 
         const contentString =
             `<h1>${place.name}</h1>` +
-            `<h2>${place.formatted_address}</h2>` +
-            `<h2> Vicinity: ${place.vicinity}</h2>` +
+            `<h2>${place.vicinity}</h2>` +
             `<h2> Rating: ${place.rating}</h2>` +
             `<h2>Total user ratings: ${place.user_ratings_total}</h2>`;
 
@@ -106,7 +106,7 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
     return(
 
         <div className="flex justify-center">
-            <div ref={ref} className="w-[1500px] h-[1000px]"></div>
+            <div ref={ref} className=" absolute left-0 w-[1350px] h-[770px]"></div>
         </div>
     )
 };

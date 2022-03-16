@@ -42,7 +42,7 @@ function App() {
                     {scriptLoaded &&
                     <Route path='/map/:brand'
                            element={<Map
-                               mapType={google.maps.MapTypeId.HYBRID}
+                               mapType={google.maps.MapTypeId.ROADMAP}
                                mapTypeControl ={true} />}/>}
 
                 </Routes>
