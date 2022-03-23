@@ -9,38 +9,42 @@ interface IMap {
 type GoogleLatLng = google.maps.LatLng;
 type GoogleMap = google.maps.Map;
 
-let service: google.maps.places.PlacesService;
+
 
 
 const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
 
     const ref = useRef<HTMLDivElement>(null);
     const [map,setMap] = useState<GoogleMap>();
-    const{brand} = useParams();
+    const {brand} = useParams();
+    const carDealers = [];
+    const cars = document.getElementById('cars');
+    let service: google.maps.places.PlacesService;
 
     const startMap = ():void => {
         if(!map) {
             defaultMapStart();
+
         }
         if(map){
             searchDealers();
+
+
         }
     };
 
     useEffect(startMap,[map]);
 
     const defaultMapStart = ():void => {
-        const defaultAddress = new google.maps.LatLng( 48.210033,16.363449);
+        const defaultAddress = new google.maps.LatLng( 48.864716,2.349014);
         initMap(12,defaultAddress);
-
-
     }
 
     const searchDealers = (): void => {
         service = new google.maps.places.PlacesService(map);
 
         let request = {
-            location: new google.maps.LatLng( 48.210033,16.363449),
+            location: new google.maps.LatLng( 48.864716,2.349014),
             radius: 2000,
             query: brand + 'Dealer',
             // type: 'car_dealer',
@@ -52,13 +56,16 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
         service.textSearch(request, callback);
     }
 
-    function callback(results, status) {
+    const callback = (results, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
+            for (let i = 0; i < results.length; i++) {
                 console.log(results[i]);
                 createMarker(results[i]);
+                carDealers.push(results[i]);
             }
         }
+        renderCarDealers();
+        console.log(carDealers);
         console.log(results.length);
     };
 
@@ -78,7 +85,7 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
 
     };
 
-    function createMarker(place: google.maps.places.PlaceResult) {
+    const createMarker = (place: google.maps.places.PlaceResult) => {
         if (!place.geometry || !place.geometry.location) return;
 
         const marker = new google.maps.Marker({
@@ -93,6 +100,8 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
             `<h2> Rating: ${place.rating}</h2>` +
             `<h2>Total user ratings: ${place.user_ratings_total}</h2>`;
 
+
+
         let infoWindow: google.maps.InfoWindow;
 
         infoWindow = new google.maps.InfoWindow({
@@ -103,10 +112,46 @@ const Map: React.FC<IMap> = ({mapType,mapTypeControl = false}) => {
         });
     }
 
+    const renderCarDealers = () => {
+        for(let i = 0; i<carDealers.length; i++){
+                let div = document.createElement('div');
+                let name = document.createElement('h1');
+                let vicinity = document.createElement('h2');
+                let rating = document.createElement('h2');
+                let user_ratings = document.createElement('h2');
+
+                name.innerText = carDealers[i].name;
+                vicinity.innerText = carDealers[i].vicinity;
+                rating.innerText = carDealers[i].rating;
+                user_ratings.innerText = carDealers[i].user_ratings_total;
+
+                div.append(name,vicinity,rating,user_ratings);
+                cars.appendChild(div);
+
+        }
+    }
+
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+    var request = {
+        origin: 'Bucharest',
+        destination: 'Ploiesti',
+        // travelMode: 'DRIVING'
+    };
+    directionsService.route(request, function(result, status) {
+        if (status == 'OK') {
+            directionsRenderer.setDirections(result);
+        }
+    });
+
+
+
     return(
 
         <div className="flex justify-center">
-            <div ref={ref} className=" absolute left-0 w-[1350px] h-[770px]"></div>
+            <div ref={ref} className=" absolute left-0 w-[1350px] h-[770px]"/>
+            <div className="absolute right-0" id="cars"></div>
         </div>
     )
 };

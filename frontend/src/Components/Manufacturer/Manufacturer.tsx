@@ -15,27 +15,67 @@ interface Manufacturer {
 const Manufacturer = (props) =>{
     const [data, setData] = useState<Manufacturer | []>([]);
     const{brand} = useParams();
-    // const [loading,setLoading] = useState(true);
+    const [result,setResult] = useState<Manufacturer | []>([]);
+    const [clickedButton, setClickedButton] = useState('');
+
+    const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+
+        const button: HTMLButtonElement = event.currentTarget;
+        setClickedButton(button.value);
+    };
 
     useEffect(() => {
         const result = async () => {
             const response = await axios.get<Manufacturer>('http://localhost:8080/'+ brand,);
             // const data = await response.json();
             setData(response.data);
-
+            setResult(response.data);
             console.log(response.data)
         }
         result();
     }, []);
 
+    useEffect(() => {
+        if(clickedButton){
+            filterCars(clickedButton)
+        }
+
+    }, [clickedButton]);
+
+    const filterCars = (element:string) => {
+ 
+        if(data){
+            const filteredCars = result["cars"].filter(car => car["carType"] == element)
+            const filtered = {
+                id: null,
+                name: null,
+                description: null,
+                cars: []
+            }
+
+            filtered["id"] = result["id"];
+            filtered["name"] = result["name"];
+            filtered["description"] = result["description"];
+            filtered["cars"] = filteredCars;
+            console.log(result)
+            console.log(filtered)
+            setData(filtered)
+        }
+
+
+    }
+
     return (
         <div>
 
 
-
+                <button value="HATCHBACK" onClick={buttonHandler}>HATCHBACK</button>
+                <button value="SEDAN" onClick={buttonHandler}>SEDAN</button>
+                <button value="COUPE" onClick={buttonHandler}>COUPE</button>
                 <img className ="h-[750px] p-[30px]" src={require("./audi.jpg")}/>
                 {/*// Keep getting error type x doesnt have type z*/}
-            <div className="absolute top-[250px] right-0 w-[900px]">
+                <div className="absolute top-[250px] right-0 w-[900px]">
                 <h1 className="right-[400px] top-[200px] text-[70px]">{(data as any).name}</h1>
                 <h2 className="break-all text-[30px] text-zinc-700 mt-6 ">{data["description"]}</h2>
             </div>

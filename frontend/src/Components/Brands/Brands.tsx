@@ -33,6 +33,7 @@ export  const Brands = () => {
                     <img className=" object-fill h-[100px] group-hover:opacity-100 opacity-0" src={require("./porscheLogo.png")} />
                         <Link to={`/map/${data.name}`}>
                             <FontAwesomeIcon className="text-[30px] text-blue-300 group-hover:opacity-100 opacity-0" icon={faMapMarked} />
+                            <h1 className="text-[30px] group-hover:opacity-100 opacity-0">Dealers near you</h1>
                         </Link>
                     </div>
                 </div>
