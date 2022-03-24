@@ -42,9 +42,11 @@ const Manufacturer = (props) =>{
         }
 
     }, [clickedButton]);
-
+    const showAll = () => {
+        setData(result);
+    }
     const filterCars = (element:string) => {
- 
+
         if(data){
             const filteredCars = result["cars"].filter(car => car["carType"] == element)
             const filtered = {
@@ -69,16 +71,23 @@ const Manufacturer = (props) =>{
     return (
         <div>
 
-
-                <button value="HATCHBACK" onClick={buttonHandler}>HATCHBACK</button>
-                <button value="SEDAN" onClick={buttonHandler}>SEDAN</button>
-                <button value="COUPE" onClick={buttonHandler}>COUPE</button>
                 <img className ="h-[750px] p-[30px]" src={require("./audi.jpg")}/>
+            <div className="flex w-[900px] m-auto justify-between">
+                <button className="bg-white text-[30px] hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" value="HATCHBACK" onClick={showAll}>ALL</button>
+                <button className="bg-white text-[30px] hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" value="HATCHBACK" onClick={buttonHandler}>HATCHBACK</button>
+                <button className="bg-white text-[30px] hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" value="SEDAN" onClick={buttonHandler}>SEDAN</button>
+                <button className="bg-white text-[30px] hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" value ="COUPE" onClick={buttonHandler}>COUPE</button>
+                <button className="bg-white text-[30px] hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" value ="SUV" onClick={buttonHandler}>SUV</button>
+            </div>
+
                 {/*// Keep getting error type x doesnt have type z*/}
                 <div className="absolute top-[250px] right-0 w-[900px]">
-                <h1 className="right-[400px] top-[200px] text-[70px]">{(data as any).name}</h1>
-                <h2 className="break-all text-[30px] text-zinc-700 mt-6 ">{data["description"]}</h2>
-            </div>
+                    <div className="flex flex-row justify-between w-[350px] m-auto">
+                        <h1 className="right-[400px] top-[200px] text-[70px]">{(data as any).name}</h1>
+                        <img className ="object-fill h-[100px]" src={require("./porscheLogo.png")}/>
+                    </div>
+                    <h2 className="break-all text-[30px] text-zinc-700 mt-6 ">{data["description"]}</h2>
+                </div>
 
             <div className="grid grid-cols-3 mt-[10px]  items-center">
                 {data["cars"]?.map(car =>

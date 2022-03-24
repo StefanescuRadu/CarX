@@ -63,7 +63,7 @@ const UserProfile = () => {
                         Add new brands
                     </Link>
                     <Link
-                        className="mt-[10px] tbg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                        className="mt-[10px] bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
                         to="/addCar">
                         Add new cars
                     </Link>

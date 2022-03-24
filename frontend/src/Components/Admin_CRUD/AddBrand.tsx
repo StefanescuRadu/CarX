@@ -5,12 +5,14 @@ import {useNavigate} from "react-router-dom";
 interface Brand{
     name: string;
     description: string;
+    image: string;
 }
 const AddBrand = () => {
     const navigate = useNavigate();
     const [brand,setBrand] = useState<Brand>({
         name: null,
         description: null,
+        image: null
     })
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,6 +57,11 @@ const AddBrand = () => {
                         id="description" name="description" placeholder="Description" required onChange={(e) =>setBrand({...brand,description:e.target.value})}/>
 
             </div>
+            {/*<div>*/}
+            {/*    <label className="block mt-[12px]" htmlFor="brand" >Brand Image</label>*/}
+            {/*    <input className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
+            {/*           type="file" id="image" name="image" placeholder="Image"   required onChange={(e) =>setBrand({...brand,image:e.target.files})} />*/}
+            {/*</div>*/}
             <button className="bg-stone-900 mt-[30px] hover:bg-stone-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Add brand</button>
         </form>
         </div>
