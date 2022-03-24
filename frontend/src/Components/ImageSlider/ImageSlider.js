@@ -1,5 +1,4 @@
 import  { useState } from 'react';
-import { SliderData } from './SliderData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAngleLeft,faAngleRight} from "@fortawesome/free-solid-svg-icons";
 

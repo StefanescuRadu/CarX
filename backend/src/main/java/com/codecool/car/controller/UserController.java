@@ -81,7 +81,7 @@ public class UserController {
         return new JsonResponse("BAD", "Wrong email or password!");
     }
 
-    @PostMapping("/{user}/{car}")
+    @PostMapping("/save/{user}/{car}")
     public ResponseEntity<?> addCarToFavourite(@PathVariable String user, @PathVariable Long car){
         userService.addCarToFavourites(user,car);
         return ResponseEntity.ok().build();

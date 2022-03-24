@@ -13,6 +13,7 @@ import AddCar from "./Components/Admin_CRUD/AddCar.tsx";
 import Map from "./Components/Map/Map.tsx";
 import {useState,useEffect} from "react";
 import {loadMapApi} from "./utils/GoogleMapsUtils.ts";
+import EditCar from "./Components/Admin_CRUD/EditCar.tsx";
 
 function App() {
     const google = window.google;
@@ -33,6 +34,7 @@ function App() {
                     <Route path='/' element={<Landing/>}/>
                     <Route path='/brands' element={<Brands/>}/>
                     <Route path='/brands/:brand' element={<Manufacturer/>}/>
+                    <Route path='/edit/:brand/:model' element={<EditCar/>}/>
                     <Route path='/brands/:brand/:model' element={<Model/>}/>
                     <Route path='/register' element={<Register/>}/>
                     <Route path='/login' element={<Login/>}/>

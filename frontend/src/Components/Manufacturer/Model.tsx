@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {USER_TYPE,USER_NAME} from "../../Store"
+import {USER_TYPE,USER_EMAIL} from "../../Store"
 import {useAtom} from "jotai";
 
 import ImageSlider from "../ImageSlider/ImageSlider"
@@ -30,7 +30,7 @@ const Model = (props) => {
     const [data, setData] = useState<Car | []>([]);
     const {brand,model} = useParams();
     const [userType,setUserType] = useAtom(USER_TYPE);
-    const [userName,setUserName] = useAtom(USER_NAME);
+    const [userEmail,setUserEmail] = useAtom(USER_EMAIL);
     const navigate = useNavigate();
     console.log(model,brand)
 
@@ -52,14 +52,15 @@ const Model = (props) => {
     const addToFavourite = async () => {
         console.log("tried to fetch");
         console.log(JSON.stringify(brand))
+        console.log('http://localhost:8080/users/save/' + userEmail + '/' + data['id'])
         try{
-            const response = await axios.post('http://localhost:8080/users/' + userName + '/' + data['id'],
+            const response = await axios.post('http://localhost:8080/users/save/' + userEmail + '/' + data['id'],
                 {
                     headers : headers
                 }
             );
             console.log(response.data);
-            navigate("/users/" + userName);
+            navigate("/users/" + userEmail);
         }
         catch (err){
             console.log(err)
@@ -67,6 +68,7 @@ const Model = (props) => {
     }
 
     return(
+
         <div>
         <div className="relative top-[100px] flex flex-row justify-around">
 
@@ -92,6 +94,12 @@ const Model = (props) => {
                                        py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
                         onClick={addToFavourite}>Add car to favourite</button>
             }
+        {
+            userType == "ROLE_ADMIN" &&
+            <Link to={"#"} className="bg-blue-500 hover:bg-blue-400 text-white font-bold
+                                       py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                    >Edit car</Link>
+        }
         </div>
         </div>
             <div className="relative top-[220px] pb-[200px]">
@@ -135,7 +143,7 @@ const Model = (props) => {
                     the seat back folded, the volume increases to 1,490 liters.</p>
                     <div className="width-[400px] ">
                         <iframe width="600" height="405"
-                                src="https://www.youtube.com/embed/3ObHUazIfZQ">
+                                src="https://www.youtube.com/embed/v71c7v2_mxI">
                         </iframe>
                     </div>
 
@@ -171,7 +179,7 @@ const Model = (props) => {
             <div className="relative top-[200px] text-[50px]">
                 <h1>{data["name"]} drive select</h1>
                 <p className="text-[30px] mb-[150px]">You can drive efficiently, comfortably, dynamically, automatically or according to your custom settings: with the Audi drive select, you can always adapt your Audi A3 to your personal driving style. You choose if and when you want to benefit from more dynamism or more comfort, or simply the ideal combination for you. You can also use the Efficiency mode to save fuel and protect the environment.</p>
-                <img className="w-[1800px] m-auto" src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779556/dh-1380-33d43f/5fef4d32/1627886180/1920x1920-audi-a3-sedan-my2021-1022-oe.jpg" />
+                <img className="w-[1800px] m-auto" src={data["carImage"]} />
             </div>
 
             <div className="flex flex-row justify-evenly  relative top-[303px] h-[230px] bg-zinc-200 w-[100%]">

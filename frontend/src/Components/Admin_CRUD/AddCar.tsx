@@ -4,8 +4,8 @@ import axios from "axios";
 
 interface Car{
 
-     name: string,
-     carType: string,
+    name: string,
+    carType: string,
     description: string,
     engine: number,
     seats: number,
@@ -15,6 +15,7 @@ interface Car{
     color: string;
     interior:string[];
     exterior:string[];
+    carImage: string;
 }
 
 const AddCar = () => {
@@ -30,7 +31,9 @@ const AddCar = () => {
         price: null,
         color: "Black",
         interior:[],
-        exterior:[]
+        exterior:[],
+        carImage: null,
+
     })
     const[data,setData] = useState(null);
     const [brand,setBrand] = useState("BMW");
@@ -176,17 +179,22 @@ const AddCar = () => {
                 <div>
                     <label className="block mt-[12px]" htmlFor="exterior1" >Exterior picture 1</label>
                     <input className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="text" id="exterior1" name="exterior1" placeholder="interior1"   required onChange={(e) =>setCar({...car,exterior:[...car.interior,e.target.value]})} />
+                           type="text" id="exterior1" name="exterior1" placeholder="interior1"   required onChange={(e) =>setCar({...car,exterior:[...car.exterior,e.target.value]})} />
                 </div>
                 <div>
                     <label className="block mt-[12px]" htmlFor="exterior2" >Exterior picture 2</label>
                     <input className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="text" id="exterior2" name="exterior2" placeholder="exterior2"   required onChange={(e) =>setCar({...car,exterior:[...car.interior,e.target.value]})} />
+                           type="text" id="exterior2" name="exterior2" placeholder="exterior2"   required onChange={(e) =>setCar({...car,exterior:[...car.exterior,e.target.value]})} />
                 </div>
                 <div>
                     <label className="block mt-[12px]" htmlFor="exterior3" >Exterior picture 3</label>
                     <input className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="text" id="exterior3" name="exterior3" placeholder="exterior3"   required onChange={(e) =>setCar({...car,exterior:[...car.interior,e.target.value]})} />
+                           type="text" id="exterior3" name="exterior3" placeholder="exterior3"   required onChange={(e) =>setCar({...car,exterior:[...car.exterior,e.target.value]})} />
+                </div>
+                <div>
+                    <label className="block mt-[12px]" htmlFor="backgroundImage" >Background image</label>
+                    <input className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                           type="text" id="backgroundImage" name="backgroundImage" placeholder="backgroundImage"   required onChange={(e) =>setCar({...car,carImage:e.target.value})} />
                 </div>
 
                 <button className="bg-stone-900 mt-[30px] hover:bg-stone-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Add car to brand</button>

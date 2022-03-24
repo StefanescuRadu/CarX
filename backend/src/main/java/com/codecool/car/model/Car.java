@@ -34,6 +34,7 @@ public class Car {
     private List<String> interior;
     @ElementCollection
     private List<String> exterior;
+    private String carImage;
     @JsonIgnore
     @ManyToOne
     private Brand brand;
