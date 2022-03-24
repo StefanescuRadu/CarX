@@ -9,6 +9,8 @@ interface Manufacturer {
     id: number;
     name: string;
     description: string;
+    carLogo: string,
+    brandLogo: string,
     cars: Car[];
 
 }
@@ -53,12 +55,16 @@ const Manufacturer = (props) =>{
                 id: null,
                 name: null,
                 description: null,
+                carLogo: null,
+                brandLogo: null,
                 cars: []
             }
 
             filtered["id"] = result["id"];
             filtered["name"] = result["name"];
             filtered["description"] = result["description"];
+            filtered["carLogo"] = result["carLogo"];
+            filtered["brandLogo"] = result["brandLogo"];
             filtered["cars"] = filteredCars;
             console.log(result)
             console.log(filtered)
@@ -84,7 +90,7 @@ const Manufacturer = (props) =>{
                 <div className="absolute top-[250px] right-0 w-[900px]">
                     <div className="flex flex-row justify-between w-[350px] m-auto">
                         <h1 className="right-[400px] top-[200px] text-[70px]">{(data as any).name}</h1>
-                        <img className ="object-fill h-[100px]" src={require("./porscheLogo.png")}/>
+                        <img className ="object-fill h-[100px]" src={(data as any).brandLogo}/>
                     </div>
                     <h2 className="break-all text-[30px] text-zinc-700 mt-6 ">{data["description"]}</h2>
                 </div>
@@ -100,7 +106,7 @@ const Manufacturer = (props) =>{
                                 <FontAwesomeIcon className="ml-[8px] text-red-700" icon={faAngleDoubleRight}/>
                             </h1>
                             <h1 className="bold text-[30px]">Starting from {car.price.toLocaleString("de-DE",{maximumFractionDigits:2})},- EUR</h1>
-                            <img className="w-[400px] ml-[130px]" src={require("./img.png")}/>
+                            <img className="w-[400px] ml-[130px]" src={(data as any).carLogo}/>
                         </Link>
                     ))}
             </div>

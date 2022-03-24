@@ -5,14 +5,18 @@ import {useNavigate} from "react-router-dom";
 interface Brand{
     name: string;
     description: string;
-    image: string;
+    brandImage: string;
+    brandLogo: string;
+    carLogo: string;
 }
 const AddBrand = () => {
     const navigate = useNavigate();
     const [brand,setBrand] = useState<Brand>({
         name: null,
         description: null,
-        image: null
+        brandImage: null,
+        brandLogo: null,
+        carLogo: null
     })
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +42,7 @@ const AddBrand = () => {
             navigate("/brands")
         }
         catch (err){
-            console.log(err.response.data.errors)
+            console.log(err)
         }
     }
     return (
@@ -55,13 +59,23 @@ const AddBrand = () => {
                 <label className="block mt-[12px]" htmlFor="description" >Description</label>
                 <textarea className=" mt-[12px]  resize shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="description" name="description" placeholder="Description" required onChange={(e) =>setBrand({...brand,description:e.target.value})}/>
-
             </div>
-            {/*<div>*/}
-            {/*    <label className="block mt-[12px]" htmlFor="brand" >Brand Image</label>*/}
-            {/*    <input className=" mt-[12px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
-            {/*           type="file" id="image" name="image" placeholder="Image"   required onChange={(e) =>setBrand({...brand,image:e.target.files})} />*/}
-            {/*</div>*/}
+            <div>
+                <label className="block mt-[12px]" htmlFor="brandImage" >Brand Image</label>
+                <input className=" mt-[12px]  resize shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          id="brandImage" name="brandImage" placeholder="brandImage" required onChange={(e) =>setBrand({...brand,brandImage:e.target.value})}/>
+            </div>
+            <div>
+                <label className="block mt-[12px]" htmlFor="brandLogo" >Brand Logo</label>
+                <input className=" mt-[12px]  resize shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          id="brandLogo" name="brandLogo" placeholder="brandLogo" required onChange={(e) =>setBrand({...brand,brandLogo:e.target.value})}/>
+            </div>
+            <div>
+                <label className="block mt-[12px]" htmlFor="carLogo" >Car Logo</label>
+                <input className=" mt-[12px]  resize shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="carLogo" name="carLogo" placeholder="carLogo" required onChange={(e) =>setBrand({...brand,carLogo:e.target.value})}/>
+            </div>
+
             <button className="bg-stone-900 mt-[30px] hover:bg-stone-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">Add brand</button>
         </form>
         </div>

@@ -23,6 +23,9 @@ public class Brand {
     private Long id;
     private String name;
     private String description;
+    private String brandImage;
+    private String brandLogo;
+    private String carLogo;
     @OneToMany
     private Set<Car> cars = new HashSet<>();
 

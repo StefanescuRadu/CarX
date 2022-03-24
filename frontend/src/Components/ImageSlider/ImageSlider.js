@@ -24,14 +24,14 @@ const ImageSlider = ({ slides }) => {
         <section className='relative flex justify-center align-center'>
             <FontAwesomeIcon className="absolute top-[50%] text-[50px] right-[150px] text-amber-700" onClick={prevSlide} icon={faAngleRight}/>
             <FontAwesomeIcon className="absolute top-[50%] text-[40px] left-[150px] ml-[8px] text-red-700" onClick={nextSlide} icon={faAngleLeft}/>
-            {SliderData.map((slide, index) => {
+            {slides.map((slide, index) => {
                 return (
                     <div
                         className={index === current ? 'opacity-1 transition duration-1000 scale-110' : 'opacity-0 transition duration-1000 ease'}
                         key={index}
                     >
                         {index === current && (
-                            <img className="object-fill  w-[1000px] h-[600px] border-radius-1" src={slide.image} alt='travel image'  />
+                            <img className="object-fill  w-[1000px] h-[600px] border-radius-1" src={slide} alt='travel image'  />
                         )}
                     </div>
                 );

@@ -34,8 +34,8 @@ public class CarApplication {
 	@Bean
 	CommandLineRunner run(UserService userService,BrandService brandService){
 		return  args -> {
-//			userService.saveRole(new Role(null,"ROLE_USER"));
-//			userService.saveRole(new Role(null,"ROLE_ADMIN"));
+			userService.saveRole(new Role(null,"ROLE_USER"));
+			userService.saveRole(new Role(null,"ROLE_ADMIN"));
 //
 //			brandService.addBrand(new Brand(null, "Bmw", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum porttitor magna rutrum mollis. Morbi ac dictum eros, a porttitor leo.", new HashSet<>()));
 //			brandService.addBrand(new Brand(null, "Audi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum porttitor magna rutrum mollis. Morbi ac dictum eros, a porttitor leo.", new HashSet<>()));
@@ -69,8 +69,9 @@ public class CarApplication {
 //			brandService.addCarToBrand("Mercedes",gla);
 //			brandService.addCarToBrand("Mercedes",s);
 //
-//			userService.saveUser(new User(null,"admin","admin@admin.com","admin",new HashSet<>(),new ArrayList<>()));
-//			userService.addRoleToUser("admin@admin.com","ROLE_ADMIN");
+			userService.saveUser(new User(null,"admin","admin@admin.com","admin",new HashSet<>(),new ArrayList<>()));
+			userService.addRoleToUser("admin@admin.com","ROLE_ADMIN");
+
 
 
 		};

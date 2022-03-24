@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {USER_TYPE,USER_NAME} from "../../Store"
 import {useAtom} from "jotai";
@@ -8,7 +8,8 @@ import ImageSlider from "../ImageSlider/ImageSlider"
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
 import {SliderData} from "../ImageSlider/SliderData";
-import ModelFooter from "./ModelFooter.jsx";
+import {faCar,faEnvelope,faMapMarker} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export interface Car{
     id: number;
@@ -21,6 +22,8 @@ export interface Car{
     engineType: string;
     price: number;
     color: string;
+    interior: [],
+    exterior: []
 }
 
 const Model = (props) => {
@@ -59,7 +62,7 @@ const Model = (props) => {
             navigate("/users/" + userName);
         }
         catch (err){
-            console.log(err.response.data.errors)
+            console.log(err)
         }
     }
 
@@ -113,11 +116,12 @@ const Model = (props) => {
 
             <h1 className="relative text-[40px]  mb-[20px]">Interior</h1>
             <p className="relative text-[20px] w-[1000px] m-auto mb-[50px]">The interior of the Audi A3 Limousine is mainly characterized by driver orientation and digitization. With the optional Ambient Plus lighting package, you can bathe the interior in 30 different colors. The new dashboard, center console with shifter selector for S tronic models and optional sports front seats all create a progressive look. The standard 10.1-inch MMI touch color display is integrated into a sleek, glossy black surface.</p>
-            <ImageSlider slides={SliderData}/>
+            {data["interior"] && <ImageSlider slides={data["interior"]}/>}
+
 
             <h2 className="relative text-[40px] mt-[50px] mb-[20px]">Exterior</h2>
             <p className="relative text-[20px] w-[1000px] m-auto mb-[50px]">The new design of the Audi S5 Coupé TDI¹ signals sportiness and attracts the eye from all perspectives. This spectacular impression is underlined by the S elements included in the standard exterior equipment: S-bar, radiator grille with honeycomb pattern and matte black Titan finish and silver-aluminum matte inserts, wide air intakes and silver-aluminum matte blade. The 18-inch rims and the S sports chassis, the exterior mirrors with matt silver-aluminum housings and the S emblem on the illuminated front sills stand out from the profile. The S-trim is also decorated in silver-matte aluminum, the double chrome S-ends on the exhaust system and the A-wing dynamically accentuate the wide rear of the Audi S5 Coupé TDI¹.</p>
-            <ImageSlider slides={SliderData}/>
+            {data["exterior"] && <ImageSlider slides={data["exterior"]}/>}
 
             <div className="relative top-[30px]   text-[30px] mt-[50px] m-auto w-[1400px] h-[600px]">
                 <h1 className="text-[60px] pb-[60px]">
@@ -194,6 +198,22 @@ const Model = (props) => {
                     <a href="#">History</a>
                     <a href="#">Production locations</a>
                     <a href="#">Research partnerships</a>
+                </div>
+
+            </div>
+
+            <div className="flex flex-row justify-evenly items-center text-slate-50 relative top-[300px] h-[230px] bg-zinc-900 w-[100%]">
+                <div className="flex flex-col">
+                    <FontAwesomeIcon className="text-[45px] hover:text-purple-500" icon={faCar} />
+                    <a href="#">Configurator</a>
+                </div>
+                <div className="flex flex-col">
+                    <FontAwesomeIcon className="text-[45px] hover:text-amber-500" icon={faMapMarker} />
+                    <Link to={`/map/${brand}`} >Look partner</Link>
+                </div>
+                <div className="flex flex-col">
+                    <FontAwesomeIcon className="text-[45px] hover:text-green-500" icon={faEnvelope} />
+                    <a href="#">Newsletter</a>
                 </div>
 
             </div>

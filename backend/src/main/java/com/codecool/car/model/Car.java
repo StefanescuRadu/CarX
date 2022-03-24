@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +30,10 @@ public class Car {
     private EngineType engineType;
     private int price;
     private String color;
+    @ElementCollection
+    private List<String> interior;
+    @ElementCollection
+    private List<String> exterior;
     @JsonIgnore
     @ManyToOne
     private Brand brand;
