@@ -8,6 +8,7 @@ import ImageSlider from "../ImageSlider/ImageSlider"
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
 import {SliderData} from "../ImageSlider/SliderData";
+import ModelFooter from "./ModelFooter.jsx";
 
 export interface Car{
     id: number;
@@ -110,10 +111,12 @@ const Model = (props) => {
                 </div>
             </div>
 
-            <h1 className="relative text-[40px]  mb-[50px]">Exterior</h1>
+            <h1 className="relative text-[40px]  mb-[20px]">Interior</h1>
+            <p className="relative text-[20px] w-[1000px] m-auto mb-[50px]">The interior of the Audi A3 Limousine is mainly characterized by driver orientation and digitization. With the optional Ambient Plus lighting package, you can bathe the interior in 30 different colors. The new dashboard, center console with shifter selector for S tronic models and optional sports front seats all create a progressive look. The standard 10.1-inch MMI touch color display is integrated into a sleek, glossy black surface.</p>
             <ImageSlider slides={SliderData}/>
 
-            <h2 className="relative text-[40px] my-[50px]">Interior</h2>
+            <h2 className="relative text-[40px] mt-[50px] mb-[20px]">Exterior</h2>
+            <p className="relative text-[20px] w-[1000px] m-auto mb-[50px]">The new design of the Audi S5 Coupé TDI¹ signals sportiness and attracts the eye from all perspectives. This spectacular impression is underlined by the S elements included in the standard exterior equipment: S-bar, radiator grille with honeycomb pattern and matte black Titan finish and silver-aluminum matte inserts, wide air intakes and silver-aluminum matte blade. The 18-inch rims and the S sports chassis, the exterior mirrors with matt silver-aluminum housings and the S emblem on the illuminated front sills stand out from the profile. The S-trim is also decorated in silver-matte aluminum, the double chrome S-ends on the exhaust system and the A-wing dynamically accentuate the wide rear of the Audi S5 Coupé TDI¹.</p>
             <ImageSlider slides={SliderData}/>
 
             <div className="relative top-[30px]   text-[30px] mt-[50px] m-auto w-[1400px] h-[600px]">
@@ -135,12 +138,14 @@ const Model = (props) => {
                 </div>
             </div>
 
-            <div className="flex flex-row justify-evenly w-[100%]  mt-[40px]">
-                <div>
-                    <img className="w-[600px] ml-[130px]" src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779544-482852-779545/dh-425-33d43f/af089c47/1627886179/1920x1080-audi-a3-limousine-business-package.jpg"/>
-                    <h1>Bussiness package</h1>
-                <p>With the optional Business package you are always optimally informed. The package offers you attractive price advantages for the facilities listed below.</p>
-                <ul>
+
+            <h1 className="text-[50px] relative top-[25px]">Packages </h1>
+            <div className="flex flex-row justify-center mt-[80px] w-[1800px] m-auto text-[50px]  ">
+                <div className="w-[900px] ">
+                    <img className="w-[600px] relative left-[150px] " src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779544-482852-779545/dh-425-33d43f/af089c47/1627886179/1920x1080-audi-a3-limousine-business-package.jpg"/>
+                    <h1 className="text-zinc-900">Bussiness package</h1>
+                <p className="text-[30px]">With the optional Business package you are always optimally informed. The package offers you attractive price advantages for the facilities listed below.</p>
+                <ul className="text-[20px] ">
                     <li>MMI Navigation plus with MMI touch</li>
                     <li>Audi smartphone interface must also be included</li>
                     <li>Audi phone box light</li>
@@ -149,15 +154,49 @@ const Model = (props) => {
                     <li>Multifunction Plus 3-spoke steering wheel (S tronic with paddle shift paddles)</li>
                 </ul>
                 </div>
-                <div>
-                        <img className="w-[600px] ml-[130px]" src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779544-482853-779548/dh-425-33d43f/57668bcf/1627886180/1920x1080-audi-a3-limousine-audi-exclusivepaket.jpg"/>
+
+                <div  className="w-[900px]" >
+                        <img className="w-[600px] relative left-[150px] " src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779544-482853-779548/dh-425-33d43f/57668bcf/1627886180/1920x1080-audi-a3-limousine-audi-exclusivepaket.jpg"/>
                 <h1>Audi exclusive</h1>
-                <p>Those who drive an Audi want something really special.</p>
-                <p>Audi Exclusive gives you the opportunity to turn your new Audi into your own personal car, that is, a truly special car. Here you can see how well Audi exclusively adapts to your personal requirements: from mats to full individualization</p>
-                <button>Find out more</button>
+                <p className="text-[30px]">Those who drive an Audi want something really special.</p>
+                <p className="text-[30px]">Audi Exclusive gives you the opportunity to turn your new Audi into your own personal car, that is, a truly special car. Here you can see how well Audi exclusively adapts to your personal requirements: from mats to full individualization</p>
+                <button className=" text-[35px] bg-zinc-900 hover:bg-slate-100 text-white  font-semibold hover:text-zinc-800 py-1 px-2 border border-zinc-500 hover:border-transparent rounded">Find out more</button>
                 </div>
             </div>
 
+            <div className="relative top-[200px] text-[50px]">
+                <h1>{data["name"]} drive select</h1>
+                <p className="text-[30px] mb-[150px]">You can drive efficiently, comfortably, dynamically, automatically or according to your custom settings: with the Audi drive select, you can always adapt your Audi A3 to your personal driving style. You choose if and when you want to benefit from more dynamism or more comfort, or simply the ideal combination for you. You can also use the Efficiency mode to save fuel and protect the environment.</p>
+                <img className="w-[1800px] m-auto" src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779556/dh-1380-33d43f/5fef4d32/1627886180/1920x1920-audi-a3-sedan-my2021-1022-oe.jpg" />
+            </div>
+
+            <div className="flex flex-row justify-evenly  relative top-[303px] h-[230px] bg-zinc-200 w-[100%]">
+                <div className="flex flex-col text-[20px] relative top-[25px]">
+                    <h1  className="text-[35px]">Models</h1>
+                    <a href="#">All models</a>
+                    <a href="#">Vehicles with immediate delivery</a>
+                    <a href="#">{brand} special offers</a>
+                </div>
+                <div className="flex flex-col text-[20px] relative top-[25px]">
+                    <h1 className="text-[35px]">For clients</h1>
+                    <a href="#">DasWelt Auto</a>
+                    <a href="#">Service & Accesories</a>
+                    <a href="#">Insurance</a>
+                    <a href="#">Funding</a>
+                </div>
+                <div className="flex flex-col text-[20px] relative top-[25px]">
+                    <h1 className="text-[35px]">Inovation</h1>
+                    <a href="#">{brand} sport</a>
+                    <a href="#">{brand} e-tron</a>
+                </div>
+                <div className="flex flex-col text-[20px] relative top-[25px]">
+                    <h1 className="text-[35px] text-zinc-900">{brand} Romania</h1>
+                    <a href="#">History</a>
+                    <a href="#">Production locations</a>
+                    <a href="#">Research partnerships</a>
+                </div>
+
+            </div>
         </div>
     )
 }
