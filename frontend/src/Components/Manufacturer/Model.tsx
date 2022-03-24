@@ -116,22 +116,48 @@ const Model = (props) => {
             <h2 className="relative text-[40px] my-[50px]">Interior</h2>
             <ImageSlider slides={SliderData}/>
 
-            <div className="relative top-[30px] text-[30px] m-auto w-[1400px] ">
-                <h1>
+            <div className="relative top-[30px]   text-[30px] mt-[50px] m-auto w-[1400px] h-[600px]">
+                <h1 className="text-[60px] pb-[60px]">
                     Dimensions
                 </h1>
-                <div className="flex flex-row justify-evenly">
+                <div className="flex flex-row ">
                 <p>Being a versatile car and suitable as a family car, the Audi Q4 Sportback
                     e-tron offers a large number of storage compartments, which, including the
                     glove box, has a total capacity of 24.8 liters. Luggage with a total volume
                     of 520 liters takes place in the trunk of the Audi Q4 Sportback e-tron. With
                     the seat back folded, the volume increases to 1,490 liters.</p>
-                <iframe className="width-[1000px]" width="2000"  src="https://www.youtube.com/embed/3ObHUazIfZQ"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen></iframe>
+                    <div className="width-[400px] ">
+                        <iframe width="600" height="405"
+                                src="https://www.youtube.com/embed/3ObHUazIfZQ">
+                        </iframe>
+                    </div>
+
                 </div>
             </div>
+
+            <div className="flex flex-row justify-evenly w-[100%]  mt-[40px]">
+                <div>
+                    <img className="w-[600px] ml-[130px]" src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779544-482852-779545/dh-425-33d43f/af089c47/1627886179/1920x1080-audi-a3-limousine-business-package.jpg"/>
+                    <h1>Bussiness package</h1>
+                <p>With the optional Business package you are always optimally informed. The package offers you attractive price advantages for the facilities listed below.</p>
+                <ul>
+                    <li>MMI Navigation plus with MMI touch</li>
+                    <li>Audi smartphone interface must also be included</li>
+                    <li>Audi phone box light</li>
+                    <li>LED headlights and LED rear light blocks and dynamic rear signal lights</li>
+                    <li>Audi virtual cockpit</li>
+                    <li>Multifunction Plus 3-spoke steering wheel (S tronic with paddle shift paddles)</li>
+                </ul>
+                </div>
+                <div>
+                        <img className="w-[600px] ml-[130px]" src="https://cdn.audi.ro/media/FullWidthImage_Component/74442-779544-482853-779548/dh-425-33d43f/57668bcf/1627886180/1920x1080-audi-a3-limousine-audi-exclusivepaket.jpg"/>
+                <h1>Audi exclusive</h1>
+                <p>Those who drive an Audi want something really special.</p>
+                <p>Audi Exclusive gives you the opportunity to turn your new Audi into your own personal car, that is, a truly special car. Here you can see how well Audi exclusively adapts to your personal requirements: from mats to full individualization</p>
+                <button>Find out more</button>
+                </div>
+            </div>
+
         </div>
     )
 }

@@ -22,11 +22,8 @@ const ImageSlider = ({ slides }) => {
 
     return (
         <section className='relative flex justify-center align-center'>
-            {/*<FontAwesomeIcon icon="fa-solid fa-arrow-right" onClick={nextSlide} />*/}
             <FontAwesomeIcon className="absolute top-[50%] text-[50px] right-[150px] text-amber-700" onClick={prevSlide} icon={faAngleRight}/>
             <FontAwesomeIcon className="absolute top-[50%] text-[40px] left-[150px] ml-[8px] text-red-700" onClick={nextSlide} icon={faAngleLeft}/>
-            {/*<FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />*/}
-            {/*<FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />*/}
             {SliderData.map((slide, index) => {
                 return (
                     <div

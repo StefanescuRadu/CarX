@@ -44,8 +44,5 @@ public class BrandService {
 
     }
 
-//
-//    public Brand getByName(String name){
-//        return brandRepository.;
-//    }
+
 }

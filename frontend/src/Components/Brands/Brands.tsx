@@ -18,8 +18,7 @@ export  const Brands = () => {
         result();
     }, []);
 
-    // @ts-ignore
-    // @ts-ignore
+
     return (
 
         <div className="grid grid-cols-2 mt-[10px]  items-center">

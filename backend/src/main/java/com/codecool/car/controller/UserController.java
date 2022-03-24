@@ -87,21 +87,6 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-
-//    @PostMapping("/register")
-//    public ResponseEntity<?> saveUser(@RequestBody User user) {
-//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/register").toUriString());
-//        List<User> users = userService.getUsers();
-//        for (User user1 : users) {
-//            if(user1.getEmail().equals(user.getEmail())){
-//                System.out.println("User already here!");
-//                return ResponseEntity.badRequest().body(
-//                        "Message : Address already in use");
-//            }
-//        }
-//        return ResponseEntity.created(uri).body(userService.saveUser(user));
-//    }
-
     @PostMapping("/role/save")
     public ResponseEntity<Role> saveRole(@RequestBody Role role) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
