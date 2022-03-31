@@ -1,19 +1,20 @@
 import './App.css';
-import {Brands} from './Components/Brands/Brands.tsx';
-import Landing from "./Components/LandingPage/Landing.tsx";
-import Navbar from "./Components/Navbar/Navbar.tsx";
-import Manufacturer from "./Components/Manufacturer/Manufacturer.tsx";
-import Model from "./Components/Manufacturer/Model.tsx";
+import {Brands} from './Components/brands/Brands.tsx';
+import Landing from "./Components/landing-page/Landing.tsx";
+import Navbar from "./Components/navbar/Navbar.tsx";
+import Manufacturer from "./Components/manufacturer/Manufacturer.tsx";
+import Model from "./Components/manufacturer/Model.tsx";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Register from "./Components/User_Auth/Register.tsx";
-import Login from "./Components/User_Auth/Login.tsx";
-import UserProfile from "./Components/UserProfile/UserProfile.tsx";
-import AddBrand from "./Components/Admin_CRUD/AddBrand.tsx";
-import AddCar from "./Components/Admin_CRUD/AddCar.tsx";
-import Map from "./Components/Map/Map.tsx";
+import Register from "./Components/user-authentication/Register.tsx";
+import Login from "./Components/user-authentication/Login.tsx";
+import UserProfile from "./Components/user-profile/UserProfile.tsx";
+import AddBrand from "./Components/admin-crud/AddBrand.tsx";
+import AddCar from "./Components/admin-crud/AddCar.tsx";
+import Map from "./Components/map/Map.tsx";
 import {useState,useEffect} from "react";
 import {loadMapApi} from "./utils/GoogleMapsUtils.ts";
-import EditCar from "./Components/Admin_CRUD/EditCar.tsx";
+import EditCar from "./Components/admin-crud/EditCar.tsx";
+import Configuration from "./Components/car-configuration/Configuration.tsx";
 
 function App() {
     const google = window.google;
@@ -36,6 +37,7 @@ function App() {
                     <Route path='/brands/:brand' element={<Manufacturer/>}/>
                     <Route path='/edit/:brand/:model' element={<EditCar/>}/>
                     <Route path='/brands/:brand/:model' element={<Model/>}/>
+                    <Route path='/brands/:brand/:model/configure' element={<Configuration/>}/>
                     <Route path='/register' element={<Register/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/users/:name' element={<UserProfile/>}/>
